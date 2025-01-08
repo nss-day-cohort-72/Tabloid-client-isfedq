@@ -4,6 +4,11 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import UserProfileList from "./userprofiles/UserProfilesList";
 import UserProfileDetails from "./userprofiles/UserProfileDetails";
+import MyPostsList from "./MyPosts/MyPostsList";
+import { Explore } from "./explore/Explore";
+import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
+import { Categories } from "./categories/Categories";
+import { Tags } from "./tags/Tags";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -35,6 +40,27 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             }
           />
         </Route>
+
+        <Route path="/myposts">
+            <Route index element={<MyPostsList />} />
+        </Route>
+
+        <Route path="/explore">
+            <Route index element={<Explore />} />
+        </Route>
+
+        <Route path="/subscribed-posts">
+            <Route index element={<SubscribedPosts />} />
+        </Route>
+
+        <Route path="/categories">
+            <Route index element={<Categories />} />
+        </Route>
+
+        <Route path="/tags">
+            <Route index element={<Tags />} />
+        </Route>
+        
         <Route
           path="login"
           element={<Login setLoggedInUser={setLoggedInUser} />}
