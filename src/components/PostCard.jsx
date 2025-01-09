@@ -32,7 +32,7 @@ export const PostCard = ({ post, loggedInUser}) => {
                 </div>
             </Container>
             <Container className="d-flex justify-content-center">
-                {loggedInUser.id == post.userProfile.id && 
+                {loggedInUser?.id == post.userProfile?.id && 
                 <Button style={{width: "100px"}} onClick={() => navigate(`/posts/edit/${post.id}`, { state: { from: location }})}>Edit</Button>}
             </Container>
         </Card>
