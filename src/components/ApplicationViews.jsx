@@ -11,6 +11,9 @@ import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
 import { createContext } from "react";
 import { CreatePost } from "./createPosts/Create";
+import AllPostsList from "./posts/AllPostsList";
+import { PostDetails } from "./posts/PostDetails";
+import { EditPost } from "./posts/EditPost";
 export const UserContext = createContext();
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -68,7 +71,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="/tags">
             <Route index element={<Tags />} />
         </Route>
-        
+
+        <Route path="/allposts">
+            <Route index element={<AllPostsList />} />
+        </Route>
+
+        <Route path="/posts/:id" element={<PostDetails loggedInUser={loggedInUser} />} />
+        <Route path="/posts/edit/:id" element={<EditPost />} />
+
         <Route
           path="login"
           element={<Login setLoggedInUser={setLoggedInUser} />}
