@@ -31,6 +31,10 @@
 .small-font{
   font-size: 10px;
 }
+.modal-backdrop.blur {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
 
 @keyframes App-logo-spin {
   from {

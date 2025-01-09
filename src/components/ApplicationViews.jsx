@@ -11,6 +11,7 @@ import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
 import { createContext } from "react";
 import AllPostsList from "./allPosts/AllPostsList";
+import { EditCategory } from "./categories/EditCategory";
 export const UserContext = createContext();
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
