@@ -20,11 +20,12 @@ export const PostCard = ({ post, loggedInUser}) => {
         <Card className="shadow-sm mb-3">
             <Container className="d-flex ps-0" onClick={() => {navigate(`/posts/${post.id}`, { state: { from: location }})}}>
                 <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" />
+
                 <div className="pt-2 p-1">
                     <h4>{post.title}</h4>
                     <p>{truncateText(post.content)}</p>
                 </div>
-                <div className="d-flex flex-column justify-content-center p-2">
+                <div className="d-flex flex-column justify-content-center p-2 small-font">
                     <p>{`category: ${post.category?.name}`}</p>
                     <p>{`author: ${post.userProfile?.fullName}`}</p>
                     <p>{`duration: ${post.readTime} sec`}</p>
