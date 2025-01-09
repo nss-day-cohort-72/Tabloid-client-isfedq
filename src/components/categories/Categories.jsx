@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
-import { getAllCategories } from "../../managers/categories";
-import { Card, Container } from "reactstrap";
+import { getAllCategories, postCategory } from "../../managers/categoriesManager";
+import { Button, Card, Container, Input, InputGroup } from "reactstrap";
 
 export const Categories = () => {
     const [categories, setCategories] = useState([]);
+    const [newCategory, setNewCategory] = useState("");
 
     useEffect(() => {
         getAllCategories()
             .then(setCategories);
     }, []);
 
+    const handleCategoryChange = (e) => {
+        setNewCategory(e.target.value);
+    }
+
+    const handleSaveCategory = () => {
+        // Save the new category
+        const postObj = {name: newCategory}
+        postCategory(postObj)
+            .then(() => {
+                getAllCategories()
+                    .then(setCategories);
+            });
+        // Then, refresh the list of categories
+    }
     return (
         <Container className="mt-3 d-flex flex-column align-items-center">
             <h1 className="mb-5">Categories</h1>
@@ -25,6 +40,16 @@ export const Categories = () => {
                     </li>
                 ))}
             </ul>
+            <div className="d-flex">
+                <InputGroup>
+                    <Input
+                        type="text"
+                        onChange={handleCategoryChange}
+                        />
+                    <Button onClick={handleSaveCategory}>save</Button>
+                </InputGroup>
+            </div>
+
         </Container>
     )
 }

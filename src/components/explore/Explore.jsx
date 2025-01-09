@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getAllPosts } from "../../managers/postManager";
 import { Col, Container, Input, Label, Row } from "reactstrap";
 import { PostCard } from "../PostCard";
-import { getAllCategories } from "../../managers/categories";
+import { getAllCategories } from "../../managers/categoriesManager";
 
 export const Explore = () => {
     const [allPosts, setAllPosts] = useState([]);
