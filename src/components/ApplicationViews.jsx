@@ -10,6 +10,7 @@ import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
 import { createContext } from "react";
+import AllPostsList from "./allPosts/AllPostsList";
 export const UserContext = createContext();
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -62,6 +63,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
 
         <Route path="/tags">
             <Route index element={<Tags />} />
+        </Route>
+
+        <Route path="/allposts">
+            <Route index element={<AllPostsList />} />
         </Route>
         
         <Route

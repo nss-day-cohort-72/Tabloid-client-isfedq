@@ -17,7 +17,6 @@ export const PostCard = ({ post }) => {
                 <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" />
                 <div className="pt-2 p-1">
                     <h4>{post.title}</h4>
-                
                     <p>{truncateText(post.content)}</p>
                 </div>
                 <div className="d-flex flex-column justify-content-center p-2">
