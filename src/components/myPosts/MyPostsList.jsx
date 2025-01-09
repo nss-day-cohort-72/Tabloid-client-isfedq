@@ -18,7 +18,7 @@ export default function MyPostsList() {
       <h2 className="text-center m-3 mb-5">My Posts</h2>
       {posts?.map(post => {
         return (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} loggedInUser={loggedInUser} />
         );
       })}
     </Container>
