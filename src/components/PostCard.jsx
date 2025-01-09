@@ -19,7 +19,7 @@ export const PostCard = ({ post }) => {
                     <h4>{post.title}</h4>
                     <p>{truncateText(post.content)}</p>
                 </div>
-                <div className="d-flex flex-column justify-content-center p-2">
+                <div className="d-flex flex-column justify-content-center p-2 small-font">
                     <p>{`category: ${post.category?.name}`}</p>
                     <p>{`author: ${post.userProfile?.fullName}`}</p>
                     <p>{`duration: ${post.readTime} sec`}</p>

@@ -4,6 +4,7 @@ import { Card, Container } from "reactstrap";
 
 export const Categories = () => {
     const [categories, setCategories] = useState([]);
+
     useEffect(() => {
         getAllCategories()
             .then(setCategories);
@@ -15,7 +16,7 @@ export const Categories = () => {
             <ul className="list-unstyled">
                 {categories.map(category => (
                     <li key={category.id}>
-                        <Card className="shadow-sm mb-3" >
+                        <Card className="shadow-sm mb-3">
                             <Container className="d-flex ps-0">
                                 <h4 className="m-2">{category.name}</h4>
                             </Container>
