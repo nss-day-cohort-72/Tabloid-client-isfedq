@@ -14,12 +14,12 @@ export const PostCard = ({ post }) => {
     return (
         <Card className="shadow-sm mb-3" >
             <Container className="d-flex ps-0">
-                <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" />
+                <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" className="img-fluid" />
                 <div className="pt-2 p-1">
                     <h4>{post.title}</h4>
                     <p>{truncateText(post.content)}</p>
                 </div>
-                <div className="d-flex flex-column justify-content-center p-2">
+                <div className="d-flex flex-column justify-content-center p-2 small-font">
                     <p>{`category: ${post.category?.name}`}</p>
                     <p>{`author: ${post.userProfile?.fullName}`}</p>
                     <p>{`duration: ${post.readTime} sec`}</p>
