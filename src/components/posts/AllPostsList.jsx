@@ -22,7 +22,7 @@ export default function AllPostsList() {
         return (
           <PostCard key={post.id} post={post} loggedInUser={loggedInUser} />
         );
-      })}test
+      })}
     </Container>
   );
 }

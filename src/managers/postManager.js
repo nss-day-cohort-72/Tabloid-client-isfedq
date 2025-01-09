@@ -24,3 +24,9 @@ export const editPost = async (post) => {
         body: JSON.stringify(post)
     });
 }
+
+export const deletePost = async (postId) => {
+    const response = await fetch(`${api_url}/${postId}`, {
+        method: "DELETE"
+    });
+}   
