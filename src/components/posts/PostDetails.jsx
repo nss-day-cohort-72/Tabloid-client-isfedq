@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Card, Container } from "reactstrap"
-import { getPostById } from "../../managers/postManager";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Button, Card, Container } from "reactstrap"
+import { deletePost, getPostById } from "../../managers/postManager";
 
-export const PostDetails = () => {
+export const PostDetails = ({ loggedInUser }) => {
     const [post, setPost] = useState()
-    // const navigate = useNavigate()
+    const [isUsersPost, setIsUsersPost] = useState(false)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
+
     const { id } = useParams()
     useEffect(() => {
         getPostById(id).then(p => {
-            console.log(p)
             setPost(p)
+            if (loggedInUser.id === p.userProfileId) {
+                setIsUsersPost(true)
+            }
         })
     }, [id])
+
+    const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this post?")) {
+            deletePost(post.id).then(() => navigate(from))
+        }   
+    }
+    const handleCancel = () => {
+        navigate(from)
+    }
 
     return (
         <Card className="shadow-sm mb-3">
@@ -26,6 +41,10 @@ export const PostDetails = () => {
                     <p>{`Author: ${post?.userProfile?.fullName}`}</p>
                     <p>{`Posted on: ${post?.publicationDate.slice(0, 10) + " " + post?.publicationDate.slice(12, 19)}`}</p>
                 </div>
+                <Container className="d-flex justify-content-center">
+                    {isUsersPost && <Button color="danger" onClick={handleDelete}>Delete Post</Button>}
+                    {isUsersPost && <Button color="primary" onClick={handleCancel}>Cancel</Button>}
+                </Container>
             </Container>
         </Card>
     )

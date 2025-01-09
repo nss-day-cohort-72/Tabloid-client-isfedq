@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Card, Container } from "reactstrap"
 
 export const PostCard = ({ post, loggedInUser}) => {
-    
+
     const navigate = useNavigate()
     const location = useLocation()
     const truncateText = (text) => {
@@ -17,9 +17,9 @@ export const PostCard = ({ post, loggedInUser}) => {
     }
 
     return (
-        <Card className="shadow-sm mb-3" >
-            <Container className="d-flex ps-0">
-                <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" className="img-fluid" />
+        <Card className="shadow-sm mb-3">
+            <Container className="d-flex ps-0" onClick={() => {navigate(`/posts/${post.id}`, { state: { from: location }})}}>
+                <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" />
 
                 <div className="pt-2 p-1">
                     <h4>{post.title}</h4>
