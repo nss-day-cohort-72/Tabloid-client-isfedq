@@ -14,7 +14,7 @@ export const PostCard = ({ post }) => {
     return (
         <Card className="shadow-sm mb-3" >
             <Container className="d-flex ps-0">
-                <img src={post.headerImageUrl} alt="" />
+                <img src={post.headerImageUrl} alt="/public/emptyAvatar.png" />
                 <div className="pt-2 p-1">
                     <h4>{post.title}</h4>
                 
