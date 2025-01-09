@@ -9,10 +9,14 @@ import { Explore } from "./explore/Explore";
 import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
-
+import { createContext } from "react";
+import AllPostsList from "./allPosts/AllPostsList";
+export const UserContext = createContext();
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
     <Routes>
+
       <Route path="/">
         <Route
           index
@@ -60,6 +64,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="/tags">
             <Route index element={<Tags />} />
         </Route>
+
+        <Route path="/allposts">
+            <Route index element={<AllPostsList />} />
+        </Route>
         
         <Route
           path="login"
@@ -72,5 +80,6 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
       </Route>
       <Route path="*" element={<p>Whoops, nothing here...</p>} />
     </Routes>
+    </UserContext.Provider>
   );
 }
