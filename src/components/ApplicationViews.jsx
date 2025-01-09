@@ -10,6 +10,7 @@ import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
 import { createContext } from "react";
+import { CreatePost } from "./createPosts/Create";
 import AllPostsList from "./posts/AllPostsList";
 import { PostDetails } from "./posts/PostDetails";
 import { EditPost } from "./posts/EditPost";
@@ -49,6 +50,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
 
         <Route path="/myposts">
             <Route index element={<MyPostsList />} />
+        </Route>
+        
+        <Route path="/create-post">
+            <Route index element={<CreatePost />} />
         </Route>
 
         <Route path="/explore">
