@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function AddComment() {
+export const AddComment = () => {
   const { postId } = useParams(); // Assumes the post ID is passed in the route
   const navigate = useNavigate();
   const [subject, setSubject] = useState("");
@@ -69,5 +69,3 @@ function AddComment() {
     </div>
   );
 }
-
-export default AddComment;
