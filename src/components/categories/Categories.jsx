@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCategories, postCategory } from "../../managers/categoriesManager";
+import { deleteCategory, getAllCategories, postCategory } from "../../managers/categoriesManager";
 import { Button, Card, Container, Input, InputGroup } from "reactstrap";
 import { EditCategory } from "./EditCategory";
 
@@ -34,6 +34,16 @@ export const Categories = () => {
         setSelectedCategory(category);
         toggle();
     };
+    const handleDeleteCategory = (e) => {
+        const categoryId = parseInt(e.target.dataset.id);
+        // Delete the category
+        deleteCategory(categoryId).then(() => {
+            // Call the deleteCategory function here
+            getAllCategories()
+                .then(setCategories);
+        });
+        // Call the getAllCategories function here
+    }
 
     return (
         <Container className="mt-3 d-flex flex-column align-items-center">
@@ -46,7 +56,7 @@ export const Categories = () => {
                                 <h4 className="m-2 me-4">{category.name}</h4>
                                 <div className="d-flex justify-content-center p-2">
                                     <Button color="link" onClick={() => handleEditClick(category)}>edit</Button>
-                                    <Button color="danger" size="sm" className="ms-3">Delete</Button>
+                                    <Button onClick={handleDeleteCategory} data-id={category.id} color="danger" size="sm" className="ms-3">Delete</Button>
                                 </div>
                             </Container>
                         </Card>
