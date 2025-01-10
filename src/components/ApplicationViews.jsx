@@ -8,10 +8,12 @@ import MyPostsList from "./MyPosts/MyPostsList";
 import { Explore } from "./explore/Explore";
 import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
-import { Tags } from "./tags/Tags";
 import { createContext } from "react";
-import AllPostsList from "./allPosts/AllPostsList";
-import { EditCategory } from "./categories/EditCategory";
+import { CreatePost } from "./createPosts/Create";
+import AllPostsList from "./posts/AllPostsList";
+import { PostDetails } from "./posts/PostDetails";
+import { EditPost } from "./posts/EditPost";
+import { AllTags } from "./tags/AllTags";
 export const UserContext = createContext();
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -49,6 +51,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="/myposts">
             <Route index element={<MyPostsList />} />
         </Route>
+        
+        <Route path="/create-post">
+            <Route index element={<CreatePost />} />
+        </Route>
 
         <Route path="/explore">
             <Route index element={<Explore />} />
@@ -63,13 +69,16 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         </Route>
 
         <Route path="/tags">
-            <Route index element={<Tags />} />
+            <Route index element={<AllTags/>} />
         </Route>
 
         <Route path="/allposts">
             <Route index element={<AllPostsList />} />
         </Route>
-        
+
+        <Route path="/posts/:id" element={<PostDetails loggedInUser={loggedInUser} />} />
+        <Route path="/posts/edit/:id" element={<EditPost />} />
+
         <Route
           path="login"
           element={<Login setLoggedInUser={setLoggedInUser} />}
