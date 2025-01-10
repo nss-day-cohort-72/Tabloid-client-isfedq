@@ -13,7 +13,7 @@ export const createSubscription = (subscription) => {
 
 export const deleteSubscription = (authorId, userId) => { 
     return fetch(`${api_url}/delete/${authorId}/${userId}`, {
-        method: "DELETE"
+        method: "PUT"
     })
 }
 

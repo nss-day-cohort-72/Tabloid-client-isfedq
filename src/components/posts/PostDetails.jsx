@@ -32,12 +32,9 @@ export const PostDetails = ({ loggedInUser }) => {
             deletePost(post.id).then(() => navigate(from))
         }   
     }
-    const handleCancel = () => {
-        navigate(from)
-    }
+    const handleCancel = () => {navigate(from)}
 
     const handleSubscribe = () => {
-        // alert("You are already subscribed to this author!")
         const subscription = {
             subscriberId: loggedInUser.id,
             authorId: post.userProfileId,
@@ -45,8 +42,10 @@ export const PostDetails = ({ loggedInUser }) => {
         createSubscription(subscription).then(() => setIsSubscribed(true))
     }
     const handleUnsubscribe = () => {
-        setIsSubscribed(false)
-        deleteSubscription(post.userProfileId, loggedInUser.id)
+        deleteSubscription(post.userProfileId, loggedInUser.id).then(status => {
+            setIsSubscribed(false)
+            console.log(status)
+        })
     }
 
     return (
