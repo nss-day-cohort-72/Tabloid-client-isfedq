@@ -58,8 +58,9 @@ export const PostDetails = ({ loggedInUser }) => {
                     <p>{`Posted on: ${post?.publicationDate.slice(0, 10) + " " + post?.publicationDate.slice(12, 19)}`}</p>
                 </div>
                 <Container className="d-flex justify-content-center">
-                    {isUsersPost && <Button className="mx-1" color="danger" onClick={handleDelete}>Delete Post</Button>}
-                    {isUsersPost && <Button className="mx-1" color="primary" onClick={handleCancel}>Cancel</Button>}
+
+                    {isUsersPost && <Button color="danger" onClick={handleDelete}>Delete post</Button>}
+                    {isUsersPost && <Button color="primary" onClick={handleCancel}>Cancel</Button>}
                 </Container>
                 {!isSubscribed && <Button className="my-1" onClick={handleSubscribe}>Subscribe</Button>}
                 {isSubscribed && <Button className="my-1" onClick={handleUnsubscribe}>Unsubscribe</Button>}
