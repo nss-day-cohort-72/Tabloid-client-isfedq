@@ -16,12 +16,9 @@ export const PostDetails = ({ loggedInUser }) => {
     useEffect(() => {
         getPostById(id).then(p => {
             setPost(p)
-            console.log(p)
             if (loggedInUser.id === p.userProfileId) {
                 setIsUsersPost(true)
             }
-            console.log(loggedInUser.id, ' Subscriber Id')
-            console.log(p.userProfileId, ' Author Id')
             checkSubscription(p.userProfile.id, loggedInUser.id)
             .then(status => {setIsSubscribed(status)})
         })
