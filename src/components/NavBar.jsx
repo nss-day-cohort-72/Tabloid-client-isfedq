@@ -28,11 +28,11 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/">
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/">
                     Home
-                  </NavLink>
-                </NavItem>
+                </NavLink>
+              </NavItem>
 
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem>
@@ -42,46 +42,37 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                   </NavItem>
                 )}
 
-                <NavItem>
+              <NavItem>
                   <NavLink tag={RRNavLink} to="/explore">
-                    Explore
+                      Explore
                   </NavLink>
-                </NavItem> 
+              </NavItem>
               <NavItem>
                   <NavLink tag={RRNavLink} to="/allposts">
                       All Posts
                   </NavLink>
               </NavItem>
               <NavItem>
-
                   <NavLink tag={RRNavLink} to="/subscribed-posts">
-                    Subscribed Posts
+                      Subscribed Posts
                   </NavLink>
-                </NavItem>
-                                
-                <NavItem>
+              </NavItem>
+              <NavItem>
                   <NavLink tag={RRNavLink} to="/myposts">
-                    My Posts
+                      My Posts
                   </NavLink>
-                </NavItem>
-
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/create-post">
-                    Create Post
-                  </NavLink>
-                </NavItem>
-
-                <NavItem>
+              </NavItem>
+              <NavItem>
                   <NavLink tag={RRNavLink} to="/categories">
-                    Categories
+                      Categories
                   </NavLink>
-                </NavItem>
-
-                <NavItem>
+              </NavItem>
+              <NavItem>
                   <NavLink tag={RRNavLink} to="/tags">
-                    Tags
+                      Tags
                   </NavLink>
-                </NavItem>
+              </NavItem>
+
               </Nav>
             </Collapse>
             <Button
