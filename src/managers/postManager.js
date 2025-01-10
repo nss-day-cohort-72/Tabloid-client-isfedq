@@ -46,4 +46,14 @@ export const deletePost = async (postId) => {
     const response = await fetch(`${api_url}/${postId}`, {
         method: "DELETE"
     });
-}   
+}  
+
+export const addTagsToPost = (postId, tagIds) => {
+    return fetch(`${api_url}/${postId}/addtags`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tagIds)
+    });
+}
