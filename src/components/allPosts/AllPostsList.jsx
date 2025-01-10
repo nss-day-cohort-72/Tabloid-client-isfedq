@@ -20,7 +20,7 @@ export default function AllPostsList() {
       <h2 className="text-center m-3 mb-5">All Posts</h2>
       {posts?.map(post => {
         return (
-          <PostCard key={post.id} post={post} loggedInUser={loggedInUser} />
+          <PostCard key={post.id} post={post} />
         );
       })}
     </Container>

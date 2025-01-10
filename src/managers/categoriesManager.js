@@ -24,3 +24,9 @@ export const updateCategory = (category) => {
         body: JSON.stringify(category)
     })
 }
+
+export const deleteCategory = (categoryId) => {
+    return fetch(`${api_url}/${categoryId}`, {
+        method: 'DELETE'
+    })
+}
