@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getAllPosts } from "../../managers/postManager";
-import { Col, Container, Input, Label, Row } from "reactstrap";
+import { Card, Col, Container, Input, Label, Row } from "reactstrap";
 import { PostCard } from "../PostCard";
 import { getAllCategories } from "../../managers/categoriesManager";
+import { getAllTags } from "../../managers/TagManager";
 
 export const Explore = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [allTags, setAllTags] = useState([]);
 
     useEffect(() => {
         getAllPosts().then(setAllPosts);
         getAllCategories().then(setCategories);
+        getAllTags().then(setAllTags);
     }, []);
     useEffect(() => {
         setFilteredPosts(allPosts);
@@ -36,7 +40,7 @@ export const Explore = () => {
             <div className="m-4">
                 <h1>Explore</h1>
             </div>
-            <Container>
+            <Container fluid className="mx-3">
                 <Row className="mb-3">
                     <Col className="d-flex justify-content-end">
                         <div className="text-center d-flex">
@@ -64,10 +68,21 @@ export const Explore = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <h4>search by tag section</h4>
+                    <Col md="3" >
+                        <h4>search by tag</h4>
+                        {allTags.map(tag => {
+                            return (
+                                <Card className="shadow-sm mb-3">
+                                    <Container className="d-flex ps-0 ">
+                                        <h4 className="m-2 me-4">{tag.name}</h4>
+                                    </Container>
+                                </Card>
+                            )
+                        
+                        })}
+
                     </Col>
-                    <Col>
+                    <Col md="9">
                         {filteredPosts.map(post => {
                             return (
                                 <PostCard key={post.id} post={post} />
