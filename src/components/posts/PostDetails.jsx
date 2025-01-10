@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Card, Container } from "reactstrap"
 import { deletePost, getPostById } from "../../managers/postManager";
+import { checkSubscription, createSubscription, deleteSubscription } from "../../managers/subscriptionManager";
 
 export const PostDetails = ({ loggedInUser }) => {
     const [post, setPost] = useState()
     const [isUsersPost, setIsUsersPost] = useState(false)
+    const [isSubscribed, setIsSubscribed] = useState("")
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -14,9 +16,14 @@ export const PostDetails = ({ loggedInUser }) => {
     useEffect(() => {
         getPostById(id).then(p => {
             setPost(p)
+            console.log(p)
             if (loggedInUser.id === p.userProfileId) {
                 setIsUsersPost(true)
             }
+            console.log(loggedInUser.id, ' Subscriber Id')
+            console.log(p.userProfileId, ' Author Id')
+            checkSubscription(p.userProfile.id, loggedInUser.id)
+            .then(status => {setIsSubscribed(status)})
         })
     }, [id])
 
@@ -27,6 +34,19 @@ export const PostDetails = ({ loggedInUser }) => {
     }
     const handleCancel = () => {
         navigate(from)
+    }
+
+    const handleSubscribe = () => {
+        // alert("You are already subscribed to this author!")
+        const subscription = {
+            subscriberId: loggedInUser.id,
+            authorId: post.userProfileId,
+        }
+        createSubscription(subscription).then(() => setIsSubscribed(true))
+    }
+    const handleUnsubscribe = () => {
+        setIsSubscribed(false)
+        deleteSubscription(post.userProfileId, loggedInUser.id)
     }
 
     return (
@@ -42,9 +62,11 @@ export const PostDetails = ({ loggedInUser }) => {
                     <p>{`Posted on: ${post?.publicationDate.slice(0, 10) + " " + post?.publicationDate.slice(12, 19)}`}</p>
                 </div>
                 <Container className="d-flex justify-content-center">
-                    {isUsersPost && <Button color="danger" onClick={handleDelete}>Delete Post</Button>}
-                    {isUsersPost && <Button color="primary" onClick={handleCancel}>Cancel</Button>}
+                    {isUsersPost && <Button className="mx-1" color="danger" onClick={handleDelete}>Delete Post</Button>}
+                    {isUsersPost && <Button className="mx-1" color="primary" onClick={handleCancel}>Cancel</Button>}
                 </Container>
+                {!isSubscribed && <Button className="my-1" onClick={handleSubscribe}>Subscribe</Button>}
+                {isSubscribed && <Button className="my-1" onClick={handleUnsubscribe}>Unsubscribe</Button>}
             </Container>
         </Card>
     )
