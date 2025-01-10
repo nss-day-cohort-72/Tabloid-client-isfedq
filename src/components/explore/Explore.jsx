@@ -9,7 +9,6 @@ export const Explore = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
         getAllPosts().then(setAllPosts);
@@ -21,7 +20,6 @@ export const Explore = () => {
 
     const handleCategoryChange = (e) => {
         const selectedCategoryId = e.target.value;
-        setSelectedCategory(selectedCategoryId);
         if (selectedCategoryId === "") {
             setFilteredPosts(allPosts);
         } else {
@@ -40,24 +38,23 @@ export const Explore = () => {
             </div>
             <Container>
                 <Row className="mb-3">
-                    <Col  className="d-flex justify-content-end">
+                    <Col className="d-flex justify-content-end">
                         <div className="text-center d-flex">
                         <Input
                             type="select"
                             name="category"
                             onChange={handleCategoryChange}
-                            value={selectedCategory || ""}
                             className="w-auto ml-auto"
                             placeholder="select category"
                             >
-                                <option value="" disabled>
+                                <option value="" disabled selected>
                                     Select category
                                 </option>
                                 <option value="" >
                                     All
                                 </option>
                                 {categories.map(category => (
-                                    <option key={category.id} value={category?.id}>
+                                    <option key={category.id} value={category.id}>
                                         {category.name}
                                     </option>
 
