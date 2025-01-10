@@ -40,7 +40,7 @@ export const Explore = () => {
             </div>
             <Container>
                 <Row className="mb-3">
-                    <Col className="d-flex justify-content-end">
+                    <Col  className="d-flex justify-content-end">
                         <div className="text-center d-flex">
                         <Input
                             type="select"
