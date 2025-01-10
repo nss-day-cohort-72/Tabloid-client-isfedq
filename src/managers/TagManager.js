@@ -13,3 +13,18 @@ export const postTag = (tag) => {
         body: JSON.stringify(tag)
     });
 }
+
+export const updateTag = (tag) => {
+    return fetch(`${api_url}/${tag.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tag)
+    });
+}
+export const deleteTag = (tagId) => {
+    return fetch(`${api_url}/${tagId}`, {
+        method: "DELETE"
+    });
+}
