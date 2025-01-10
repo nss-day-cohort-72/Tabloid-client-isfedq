@@ -12,7 +12,17 @@ import { Tags } from "./tags/Tags";
 import { createContext } from "react";
 import AllPostsList from "./allPosts/AllPostsList";
 import { EditCategory } from "./categories/EditCategory";
+import { AddComment } from "./comments/AddComment";
+import { createContext } from "react";
+import { CreatePost } from "./createPosts/Create";
+import AllPostsList from "./posts/AllPostsList";
+import { PostDetails } from "./posts/PostDetails";
+import { EditPost } from "./posts/EditPost";
+import { AllTags } from "./tags/AllTags";
+
+
 export const UserContext = createContext();
+
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
     <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
@@ -48,6 +58,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
 
         <Route path="/myposts">
             <Route index element={<MyPostsList />} />
+            <Route
+            path=":postId/add-comment"
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <AddComment />
+              </AuthorizedRoute>
+            }
+          />
         </Route>
 
         <Route path="/explore">
