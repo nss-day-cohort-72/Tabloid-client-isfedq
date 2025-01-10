@@ -9,6 +9,7 @@ import { Explore } from "./explore/Explore";
 import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
+import { AddComment } from "./comments/AddComment";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -43,6 +44,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
 
         <Route path="/myposts">
             <Route index element={<MyPostsList />} />
+            <Route
+            path=":postId/add-comment"
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <AddComment />
+              </AuthorizedRoute>
+            }
+          />
         </Route>
 
         <Route path="/explore">
