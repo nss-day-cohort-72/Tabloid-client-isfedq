@@ -1,7 +1,7 @@
 export const SubscribedPosts = () => {
     return (
         <div>
-            SUBSCRIBED POSTS
+            <h1>Subscribed Posts</h1>
         </div>
     )
 }

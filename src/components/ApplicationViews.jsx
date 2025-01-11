@@ -6,7 +6,7 @@ import UserProfileList from "./userprofiles/UserProfilesList";
 import UserProfileDetails from "./userprofiles/UserProfileDetails";
 import MyPostsList from "./MyPosts/MyPostsList";
 import { Explore } from "./explore/Explore";
-import { SubscribedPosts } from "./subscribedPosts/SubscribedPosts";
+import { SubscribedPosts } from "./posts/SubscribedPosts";
 import { Categories } from "./categories/Categories";
 import { Tags } from "./tags/Tags";
 import { createContext } from "react";
