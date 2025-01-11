@@ -21,3 +21,8 @@ export const checkSubscription = (authorId, userId) => {
     return fetch(`${api_url}/check-subscription/${authorId}/${userId}`)
     .then(res => res.json())
 }
+
+export const getSubscriptions = (userId) => {
+    return fetch(`${api_url}/get-subscriptions/${userId}`)
+    .then(res => res.json())
+}
